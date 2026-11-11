@@ -1,0 +1,36 @@
+<%
+  const notesOn = path === "/notes" || path.startsWith("/notes/") || path.startsWith("/further-maths") || path === "/add-maths";
+  const classesOn = path === "/classes" || path === "/courses";
+  const markerOn = path === "/marker" || path.startsWith("/marker/");
+%>
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span>Past papers</span><span class="ticker-star">✦</span>
+    <span>Revision notes</span><span class="ticker-star">✦</span>
+    <span>AI marking</span><span class="ticker-star">✦</span>
+    <span>Live classes</span><span class="ticker-star">✦</span>
+    <span>Past papers</span><span class="ticker-star">✦</span>
+    <span>Revision notes</span><span class="ticker-star">✦</span>
+    <span>AI marking</span><span class="ticker-star">✦</span>
+    <span>Live classes</span><span class="ticker-star">✦</span>
+  </div>
+</div>
+<header class="nav">
+  <div class="nav-inner">
+    <a class="logo" href="/" aria-label="MathNex home">
+      <img class="logo-img" src="/logo.png" alt="" width="36" height="36">
+      <span class="logo-word">MathNex.</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="nav-toggle-label">Menu</span>
+    </button>
+    <nav id="site-nav" class="nav-links" aria-label="Primary">
+      <a href="/caie" <%= path === "/caie" || path.startsWith("/caie/") ? 'aria-current="page"' : "" %>>Papers</a>
+      <a href="/notes" <%= notesOn ? 'aria-current="page"' : "" %>>Notes</a>
+      <a href="/marker" <%= markerOn ? 'aria-current="page"' : "" %>>AI Marker</a>
+      <a href="/classes" <%= classesOn ? 'aria-current="page"' : "" %>>Classes</a>
+      <a href="/about" <%= path === "/about" ? 'aria-current="page"' : "" %>>About</a>
+      <a class="btn btn-cta" href="/marker">AI Marker</a>
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,22 @@
+<%- include("partials/head") %>
+<%- include("partials/nav") %>
+<main id="main">
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="eyebrow"><span>404</span></p>
+      <h1>Page not found</h1>
+      <p class="lede">This link is unavailable. You can continue from either exam board below.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap card-grid">
+      <% boards.forEach((board) => { %>
+        <a class="mini-card" href="<%= board.href %>">
+          <span>Exam board</span>
+          <strong><%= board.name %></strong>
+        </a>
+      <% }) %>
+    </div>
+  </section>
+</main>
+<%- include("partials/footer") %>

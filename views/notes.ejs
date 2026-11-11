@@ -1,0 +1,36 @@
+<%- include("partials/head") %>
+<%- include("partials/nav") %>
+<main id="main">
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="eyebrow"><span>Topic notes</span></p>
+      <h1>Notes for every paper</h1>
+      <p class="lede">Each syllabus is organised like Further Mathematics: papers first, then topic notes with explanations, worked examples, and common mistakes.</p>
+      <ul class="chips">
+        <li><%= packs.length %> syllabuses</li>
+        <li><%= packs.reduce((sum, pack) => sum + pack.paperCount, 0) %> papers</li>
+        <li><%= packs.reduce((sum, pack) => sum + pack.topicCount, 0) %> topics</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap board-cards">
+      <% packs.forEach((pack) => { %>
+        <article class="board-card">
+          <p class="board-card-kicker"><%= pack.board %> · <%= pack.level %></p>
+          <h3><%= pack.code %> <%= pack.title %></h3>
+          <p><%= pack.blurb %></p>
+          <p class="quiet"><%= pack.paperCount %> papers · <%= pack.topicCount %> topics · <%= pack.status === "ready" ? "Notes ready" : "Outline ready" %></p>
+          <div class="hero-actions">
+            <a class="btn btn-cta" href="/notes/<%= pack.slug %>">Open notes</a>
+            <% if (pack.hrefPapers) { %>
+              <a class="btn btn-ghost" href="<%= pack.hrefPapers %>">Past papers</a>
+            <% } %>
+          </div>
+        </article>
+      <% }) %>
+    </div>
+  </section>
+</main>
+<%- include("partials/footer") %>

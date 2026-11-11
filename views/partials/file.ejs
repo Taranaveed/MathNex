@@ -1,0 +1,5 @@
+<% if (fileHref) { %>
+  <a class="file-link" href="<%= fileHref %>"><%= fileLabel %></a>
+<% } else { %>
+  <span class="file-wait"><%= fileLabel %><small><%= fileExpected %></small></span>
+<% } %>

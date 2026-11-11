@@ -1,0 +1,105 @@
+<%- include("partials/head") %>
+<%- include("partials/nav") %>
+<main id="main">
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="crumbs"><a href="/further-maths">Further Mathematics</a> <span>/</span> Past papers</p>
+      <p class="eyebrow"><span>Question desk</span></p>
+      <h1>Past papers</h1>
+      <p class="lede">Two shelves. The topical shelf keeps every question on one idea together, which is what you want while that idea is still new. The session shelf is a whole paper, which is what you want when the syllabus is already in your hands.</p>
+      <p class="quiet"><%= library.ready %> of <%= library.total %> files are on the desk.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <aside class="upload-note">
+        <h2>Where a file goes</h2>
+        <p>MathNex does not ship copies of the question papers. Add your own PDFs in the project folder and reload. The name is the whole system.</p>
+        <ul>
+          <li><code>public/papers/topical/&lt;topic-slug&gt;-questions.pdf</code></li>
+          <li><code>public/papers/topical/&lt;topic-slug&gt;-ms.pdf</code></li>
+          <li><code>public/papers/topical/&lt;topic-slug&gt;-solutions.pdf</code></li>
+          <li><code>public/papers/sessions/&lt;session&gt;-&lt;paper&gt;-qp.pdf</code></li>
+          <li><code>public/papers/sessions/&lt;session&gt;-&lt;paper&gt;-ms.pdf</code></li>
+          <li><code>public/papers/sessions/&lt;session&gt;-&lt;paper&gt;-solved.pdf</code></li>
+        </ul>
+        <p>A May/June 2024 paper 12 question paper is <code>public/papers/sessions/2024-mj-12-qp.pdf</code>. In cPanel, upload it inside this app, then restart only if the file does not appear — a static PDF usually shows up on refresh.</p>
+      </aside>
+
+      <h2 class="shelf-title">By topic</h2>
+      <% topical.forEach((paper, i) => { %>
+        <details class="paper" data-tone="<%= paper.tone %>" <%= i === 0 ? "open" : "" %>>
+          <summary>
+            <span class="paper-index"><%= paper.code %></span>
+            <span class="paper-name"><strong><%= paper.title %></strong></span>
+            <span class="paper-plus" aria-hidden="true"></span>
+          </summary>
+          <div class="paper-body">
+            <div class="table-scroll">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Topic</th>
+                    <th>Questions</th>
+                    <th>Mark scheme</th>
+                    <th>Worked solutions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% paper.topics.forEach((topic) => { %>
+                    <tr>
+                      <td><a href="<%= topic.href %>"><span class="topic-code"><%= topic.code %></span> <%= topic.title %></a></td>
+                      <td><% if (topic.files.questions) { %><a class="file-link" href="<%= topic.files.questions %>">Open</a><% } else { %><span class="file-wait" title="<%= topic.files.expected.questions %>">Not uploaded</span><% } %></td>
+                      <td><% if (topic.files.markScheme) { %><a class="file-link" href="<%= topic.files.markScheme %>">Open</a><% } else { %><span class="file-wait" title="<%= topic.files.expected.markScheme %>">Not uploaded</span><% } %></td>
+                      <td><% if (topic.files.solutions) { %><a class="file-link" href="<%= topic.files.solutions %>">Open</a><% } else { %><span class="file-wait" title="<%= topic.files.expected.solutions %>">Not uploaded</span><% } %></td>
+                    </tr>
+                  <% }) %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </details>
+      <% }) %>
+
+      <h2 class="shelf-title">By session</h2>
+      <% shelves.forEach((session, i) => { %>
+        <details class="paper" data-tone="ink" <%= i === 0 ? "open" : "" %>>
+          <summary>
+            <span class="paper-index">Set</span>
+            <span class="paper-name">
+              <strong><%= session.label %></strong>
+              <em><%= session.uploaded %> of <%= session.slots %> files uploaded</em>
+            </span>
+            <span class="paper-plus" aria-hidden="true"></span>
+          </summary>
+          <div class="paper-body">
+            <div class="table-scroll">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Paper</th>
+                    <th>Question paper</th>
+                    <th>Mark scheme</th>
+                    <th>Solved paper</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% session.rows.forEach((row) => { %>
+                    <tr>
+                      <td>Paper <%= row.code %></td>
+                      <td><% if (row.qp) { %><a class="file-link" href="<%= row.qp %>">Open</a><% } else { %><span class="file-wait" title="<%= row.expected.qp %>">Not uploaded</span><% } %></td>
+                      <td><% if (row.ms) { %><a class="file-link" href="<%= row.ms %>">Open</a><% } else { %><span class="file-wait" title="<%= row.expected.ms %>">Not uploaded</span><% } %></td>
+                      <td><% if (row.solved) { %><a class="file-link" href="<%= row.solved %>">Open</a><% } else { %><span class="file-wait" title="<%= row.expected.solved %>">Not uploaded</span><% } %></td>
+                    </tr>
+                  <% }) %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </details>
+      <% }) %>
+    </div>
+  </section>
+</main>
+<%- include("partials/footer") %>

@@ -1,0 +1,55 @@
+<%- include("partials/head") %>
+<%- include("partials/nav") %>
+<main id="main">
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="crumbs"><a href="/notes">Notes</a> <span>/</span> <%= pack.code %></p>
+      <p class="eyebrow"><span><%= pack.board %> · <%= pack.level %> · <%= pack.code %></span></p>
+      <h1><%= pack.title %></h1>
+      <p class="lede"><%= pack.blurb %></p>
+      <ul class="chips">
+        <li><%= pack.paperCount %> papers</li>
+        <li><%= pack.topicCount %> topics</li>
+        <li><%= pack.status === "ready" ? "Full notes" : "Topic outlines live" %></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="finder">
+        <label for="topic-filter">Find a topic</label>
+        <input id="topic-filter" data-filter type="search" placeholder="Search topics…" autocomplete="off">
+      </div>
+      <div class="paper-stack">
+        <% pack.papers.forEach((paper, i) => { %>
+          <details class="paper" data-tone="<%= paper.tone %>" <%= i === 0 ? "open" : "" %>>
+            <summary>
+              <span class="paper-index"><%= paper.code %></span>
+              <span class="paper-name">
+                <strong><%= paper.title %></strong>
+                <em><%= paper.summary %></em>
+              </span>
+              <span class="paper-count"><%= paper.topics.length %><small>topics</small></span>
+              <span class="paper-plus" aria-hidden="true"></span>
+            </summary>
+            <div class="paper-body">
+              <ul>
+                <% paper.topics.forEach((topic) => { %>
+                  <li data-topic="<%= (topic.code + " " + topic.title).toLowerCase() %>">
+                    <a href="<%= base %>/<%= paper.slug %>/<%= topic.slug %>">
+                      <span><%= topic.code %></span>
+                      <%= topic.title %>
+                    </a>
+                  </li>
+                <% }) %>
+              </ul>
+              <a class="btn btn-ink" href="<%= base %>/<%= paper.slug %>">Open <%= paper.code %></a>
+            </div>
+          </details>
+        <% }) %>
+      </div>
+    </div>
+  </section>
+</main>
+<%- include("partials/footer") %>

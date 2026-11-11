@@ -1,0 +1,66 @@
+<%- include("partials/head") %>
+<%- include("partials/nav") %>
+<main id="main">
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="crumbs"><a href="/notes">Notes</a> <span>/</span> 9231</p>
+      <p class="eyebrow"><span>CAIE · A Level · 9231</span></p>
+      <h1>Further Mathematics</h1>
+      <p class="lede">Full topic notes for Cambridge Further Mathematics 9231 — pure, mechanics, and statistics in syllabus order.</p>
+      <ul class="chips">
+        <li>Syllabus 9231</li>
+        <li><%= topicCount %> topics</li>
+        <li>Notes on every topic</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="finder">
+        <label for="topic-filter">Find a topic</label>
+        <input id="topic-filter" data-filter type="search" placeholder="Matrices, induction, chi-squared…" autocomplete="off">
+      </div>
+      <div class="paper-stack">
+        <% papers.forEach((paper, i) => { %>
+          <details class="paper" data-tone="<%= paper.tone %>" <%= i === 0 ? "open" : "" %>>
+            <summary>
+              <span class="paper-index"><%= paper.code %></span>
+              <span class="paper-name">
+                <strong><%= paper.title %></strong>
+                <em><%= paper.summary %></em>
+              </span>
+              <span class="paper-count"><%= paper.topics.length %> of <%= paper.topics.length %><small>notes</small></span>
+              <span class="paper-plus" aria-hidden="true"></span>
+            </summary>
+            <div class="paper-body">
+              <ul>
+                <% paper.topics.forEach((topic) => { %>
+                  <li data-topic="<%= (topic.code + " " + topic.title).toLowerCase() %>">
+                    <a href="/further-maths/<%= paper.slug %>/<%= topic.slug %>">
+                      <span><%= topic.code %></span>
+                      <%= topic.title %>
+                    </a>
+                  </li>
+                <% }) %>
+              </ul>
+              <a class="btn btn-ink" href="/further-maths/<%= paper.slug %>">Open <%= paper.code %></a>
+            </div>
+          </details>
+        <% }) %>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <a class="feature-link" href="/further-maths/past-papers">
+        <p class="eyebrow eyebrow-light"><span>Past papers</span></p>
+        <h2>The same questions, two ways.</h2>
+        <p>Grouped by topic while you are learning. Grouped by session when you are timing yourself.</p>
+        <span class="text-link light">Open the desk <span aria-hidden="true">→</span></span>
+      </a>
+    </div>
+  </section>
+</main>
+<%- include("partials/footer") %>

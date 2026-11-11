@@ -1,0 +1,128 @@
+<%- include("partials/head") %>
+<%- include("partials/nav") %>
+<main id="main">
+  <section class="hero">
+    <div class="wrap hero-layout">
+      <div class="hero-copy">
+        <div class="chip-row">
+          <span class="chip">Papers</span>
+          <span class="chip">Notes</span>
+          <span class="chip">AI Marker</span>
+          <span class="chip">Classes</span>
+        </div>
+        <h1>Your next paper<br>is already here.</h1>
+        <p class="lede">Access CAIE and Edexcel resources in one place. Browse past papers, revise with topic notes for every paper, check your working, or book a live class.</p>
+        <div class="hero-actions">
+          <a class="btn btn-cta" href="/caie">Browse papers</a>
+          <a class="btn btn-ghost" href="/marker">AI Marker</a>
+          <a class="btn btn-dark" href="/classes">Book a class</a>
+        </div>
+        <p class="hero-note">No account required · Classes via Mathism · Free to browse</p>
+      </div>
+      <aside class="hero-stage" aria-label="What MathNex offers" data-tilt>
+        <div class="hero-stage-inner">
+          <p class="hero-card-kicker">Why MathNex</p>
+          <h2 class="hero-stage-title">One place for maths exam success</h2>
+          <p class="hero-stage-copy">Past papers, topic notes for every paper, AI marking, and live tuition — built for CAIE and Edexcel students.</p>
+          <div class="motive-stack">
+            <article class="motive-card motive-a" style="--i:0">
+              <span class="motive-icon" aria-hidden="true">01</span>
+              <div>
+                <strong>Past papers</strong>
+                <span>CAIE &amp; Edexcel, ready to practise</span>
+              </div>
+            </article>
+            <article class="motive-card motive-notes" style="--i:1">
+              <span class="motive-icon" aria-hidden="true">02</span>
+              <div>
+                <strong>Notes for every paper</strong>
+                <span>Topic-by-topic revision beside each syllabus</span>
+              </div>
+            </article>
+            <article class="motive-card motive-b" style="--i:2">
+              <span class="motive-icon" aria-hidden="true">03</span>
+              <div>
+                <strong>AI Marker</strong>
+                <span>Upload work and see where marks go</span>
+              </div>
+            </article>
+            <article class="motive-card motive-c" style="--i:3">
+              <span class="motive-icon" aria-hidden="true">04</span>
+              <div>
+                <strong>Live classes</strong>
+                <span>One-to-one or group on Mathism</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </aside>
+    </div>
+    <div class="blob blob-a" aria-hidden="true"></div>
+    <div class="blob blob-b" aria-hidden="true"></div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow"><span>Exam boards</span></p>
+      <h2 class="display">Choose your exam board</h2>
+      <div class="board-cards">
+        <% boards.forEach((board) => { %>
+          <article class="board-card">
+            <p class="board-card-kicker"><%= board.name %></p>
+            <h3><%= board.label %></h3>
+            <p><%= board.blurb %></p>
+            <ul class="board-levels">
+              <% board.children.forEach((level) => { %>
+                <li>
+                  <a href="<%= level.href %>">
+                    <strong><%= level.label %></strong>
+                    <span><%= level.children.map((subject) => subject.label).join(" · ") %></span>
+                  </a>
+                </li>
+              <% }) %>
+            </ul>
+            <a class="btn btn-cta" href="<%= board.href %>">View <%= board.name %></a>
+          </article>
+        <% }) %>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap board-cards">
+      <article class="board-card">
+        <p class="board-card-kicker">Notes</p>
+        <h3>Notes for every paper</h3>
+        <p>Each paper gets clear topic notes — results, worked examples, and common mistakes — so revision matches the syllabus you are sitting.</p>
+        <a class="btn btn-cta" href="/notes">Browse notes</a>
+      </article>
+      <article class="board-card">
+        <p class="board-card-kicker">AI Marker</p>
+        <h3>Get your working marked</h3>
+        <p>Upload a photo or PDF, or type your solution. Optionally select a paper so we can mark against its official mark scheme.</p>
+        <a class="btn btn-cta" href="/marker">Open AI Marker</a>
+      </article>
+      <article class="board-card">
+        <p class="board-card-kicker">Classes</p>
+        <h3>One-to-one or group tuition</h3>
+        <p>Continue on Mathism to book a private lesson or join a small group with the teacher.</p>
+        <a class="btn btn-cta" href="/classes">View classes</a>
+      </article>
+    </div>
+  </section>
+
+  <section class="section band-mint">
+    <div class="wrap split-cta">
+      <div>
+        <p class="eyebrow"><span>Topic notes</span></p>
+        <h2 class="display">Written for the paper you are taking</h2>
+        <p>Notes sit with every syllabus on MathNex. Cambridge Further Mathematics 9231 is available now; more papers follow the same topic-by-topic format.</p>
+      </div>
+      <div class="hero-actions">
+        <a class="btn btn-cta" href="/notes">Open notes</a>
+        <a class="btn btn-dark" href="/caie">Browse papers</a>
+      </div>
+    </div>
+  </section>
+</main>
+<%- include("partials/footer") %>

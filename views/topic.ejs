@@ -1,0 +1,89 @@
+<%- include("partials/head") %>
+<%- include("partials/nav") %>
+<div class="readbar" aria-hidden="true"></div>
+<main id="main" class="lesson">
+  <article class="wrap lesson-grid">
+    <div class="lesson-main">
+      <p class="crumbs">
+        <a href="/notes">Notes</a>
+        <span>/</span>
+        <a href="<%= packHref %>"><%= packLabel %></a>
+        <span>/</span>
+        <a href="<%= notesBase %>/<%= paper.slug %>"><%= paper.title %></a>
+      </p>
+      <p class="eyebrow"><span><%= topic.code %></span></p>
+      <h1><%= topic.title %></h1>
+      <p class="lede"><%- topic.summary %></p>
+
+      <% topic.blocks.forEach((block) => { %>
+        <section class="block">
+          <h2><%= block.heading %></h2>
+          <div class="prose"><%- block.body %></div>
+        </section>
+      <% }) %>
+
+      <section class="example">
+        <p class="eyebrow eyebrow-light"><span>Worked example</span></p>
+        <div class="prose example-q"><%- topic.example.prompt %></div>
+        <ol class="prose">
+          <% topic.example.steps.forEach((step) => { %>
+            <li><%- step %></li>
+          <% }) %>
+        </ol>
+        <p class="example-answer prose"><%- topic.example.answer %></p>
+      </section>
+
+      <section class="block">
+        <h2>Try these before you look anything up</h2>
+        <ol class="practice prose">
+          <% topic.practice.forEach((item) => { %>
+            <li><%- item %></li>
+          <% }) %>
+        </ol>
+      </section>
+    </div>
+
+    <aside class="lesson-side">
+      <div class="side-card">
+        <p class="footer-label">Syllabus points</p>
+        <ul>
+          <% topic.points.forEach((point) => { %>
+            <li><%= point %></li>
+          <% }) %>
+        </ul>
+      </div>
+      <div class="side-card side-warn">
+        <p class="footer-label">Watch for</p>
+        <ol>
+          <% topic.mistakes.forEach((item) => { %>
+            <li><%= item %></li>
+          <% }) %>
+        </ol>
+      </div>
+      <div class="side-card">
+        <p class="footer-label">Files for this topic</p>
+        <div class="file-stack">
+          <%- include("partials/file", { fileHref: files.questions, fileLabel: "Questions", fileExpected: files.expected.questions }) %>
+          <%- include("partials/file", { fileHref: files.markScheme, fileLabel: "Mark scheme", fileExpected: files.expected.markScheme }) %>
+          <%- include("partials/file", { fileHref: files.solutions, fileLabel: "Worked solutions", fileExpected: files.expected.solutions }) %>
+        </div>
+      </div>
+    </aside>
+  </article>
+
+  <nav class="wrap neighbours" aria-label="Nearby topics">
+    <% if (prev) { %>
+      <a href="<%= notesBase %>/<%= prev.paper.slug %>/<%= prev.topic.slug %>">
+        <small>Previous</small>
+        <%= prev.topic.title %>
+      </a>
+    <% } else { %><span></span><% } %>
+    <% if (next) { %>
+      <a class="next" href="<%= notesBase %>/<%= next.paper.slug %>/<%= next.topic.slug %>">
+        <small>Next</small>
+        <%= next.topic.title %>
+      </a>
+    <% } %>
+  </nav>
+</main>
+<%- include("partials/footer") %>

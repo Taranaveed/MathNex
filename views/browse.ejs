@@ -1,0 +1,69 @@
+<%- include("partials/head") %>
+<%- include("partials/nav") %>
+<main id="main">
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="crumbs">
+        <a href="/">Home</a>
+        <% crumbs.forEach((crumb, index) => { %>
+          <span>/</span>
+          <% if (index < crumbs.length - 1) { %>
+            <a href="<%= crumb.href %>"><%= crumb.label %></a>
+          <% } else { %>
+            <%= crumb.label %>
+          <% } %>
+        <% }) %>
+      </p>
+      <% const kindLabel = { board: "Exam board", level: "Level", subject: "Syllabus", session: "Session", tier: "Tier", shelf: "Shelf", paper: "Paper", group: "Folder" }; %>
+      <p class="eyebrow"><span><%= kindLabel[node.kind] || "Folder" %></span></p>
+      <h1><%= node.label %></h1>
+      <% if (node.blurb) { %><p class="lede"><%= node.blurb %></p><% } %>
+      <% if (node.notesHref) { %>
+        <p><a class="btn btn-cta" href="<%= node.notesHref %>">Open the topic notes</a></p>
+      <% } %>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <% if (node.children.length) { %>
+        <div class="deck">
+          <% node.children.forEach((child) => { %>
+            <a class="tile" href="<%= child.href %>">
+              <span class="tile-kind"><%= child.kind %></span>
+              <% if (child.kind === "paper") { %><span class="tile-code"><%= child.name %></span><% } %>
+              <strong><%= child.label %></strong>
+              <% if (child.blurb) { %><em><%= child.blurb %></em><% } %>
+              <small>
+                <% if (child.children.length) { %><%= child.children.length %> inside<% } %>
+                <% if (child.children.length && child.fileCount) { %> · <% } %>
+                <% if (child.fileCount) { %><%= child.fileCount %> file<%= child.fileCount === 1 ? "" : "s" %><% } %>
+                <% if (!child.children.length && !child.fileCount) { %>Empty<% } %>
+              </small>
+            </a>
+          <% }) %>
+        </div>
+      <% } %>
+
+      <% if (node.files.length) { %>
+        <h2 class="shelf-title">Files</h2>
+        <ul class="file-list">
+          <% node.files.forEach((file) => { %>
+            <li><a class="file-link" href="<%= file.href %>"><%= file.name %></a></li>
+          <% }) %>
+        </ul>
+      <% } %>
+
+      <% if (!node.children.length && !node.files.length) { %>
+        <aside class="upload-note">
+          <h2>Nothing filed here yet</h2>
+          <p>Put a PDF in this folder and reload. The page reads whatever is there.</p>
+          <p><code><%= node.folder %></code></p>
+        </aside>
+      <% } else { %>
+        <p class="quiet folder-hint">Folder: <code><%= node.folder %></code></p>
+      <% } %>
+    </div>
+  </section>
+</main>
+<%- include("partials/footer") %>

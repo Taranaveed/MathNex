@@ -1,0 +1,25 @@
+<%- include("partials/head") %>
+<%- include("partials/nav") %>
+<main id="main">
+  <section class="page-hero">
+    <div class="wrap narrow">
+      <p class="eyebrow"><span>About</span></p>
+      <h1>About MathNex</h1>
+      <p class="lede"><%= site.blurb %></p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap prose narrow-prose">
+      <h2>What we offer</h2>
+      <p>MathNex brings CAIE and Edexcel mathematics together: organised past papers, topic notes for every paper, an AI marker, and class booking through Mathism.</p>
+      <p>Browse by board, level, and syllabus. CAIE papers are grouped by May/June and October/November. Edexcel materials are split into past papers and worksheets. Topic notes follow each paper’s syllabus — Cambridge Further Mathematics 9231 already has <%= topicCount %> written topics, with the same approach rolling out across the library.</p>
+      <h2>AI Marker</h2>
+      <p>Upload a photo or PDF of your working, or type your solution. If you select a paper with a mark scheme on file, we mark against that scheme. If not, we still provide a careful review of your work.</p>
+      <h2>Classes</h2>
+      <p>One-to-one and group options open Mathism, where you sign in and complete your booking.</p>
+      <h2>Content library</h2>
+      <p>Past papers and mark schemes are stored under <code>Exam Boards</code>. Mark scheme files should include <code>-ms</code> in the filename. Only upload materials you are permitted to host.</p>
+    </div>
+  </section>
+</main>
+<%- include("partials/footer") %>

@@ -1,0 +1,16 @@
+module.exports = [
+  { title: "Functions", note: "Domain, range, composition and inverse." },
+  { title: "Quadratic functions", note: "Completing the square, the discriminant, and inequalities." },
+  { title: "Indices and surds", note: "Laws of indices, rational powers, and simplifying surds." },
+  { title: "Factors of polynomials", note: "The factor theorem, the remainder theorem, and algebraic division." },
+  { title: "Simultaneous equations", note: "One linear and one quadratic, solved by substitution." },
+  { title: "Exponentials and logarithms", note: "Laws of logs, and equations that need a substitution." },
+  { title: "Straight-line graphs", note: "Gradient, intercept, and lines written in different forms." },
+  { title: "Circular measure", note: "Radians, arc length, and the area of a sector." },
+  { title: "Trigonometry", note: "Identities, equations, and the graphs of sine, cosine and tangent." },
+  { title: "Permutations and combinations", note: "Arrangements, selections, and simple restrictions." },
+  { title: "Binomial expansions", note: "Positive integer powers and the binomial theorem." },
+  { title: "Vectors in two dimensions", note: "Components, magnitude, and position vectors." },
+  { title: "Matrices", note: "Products, determinants, and inverses of 2 by 2 matrices." },
+  { title: "Calculus", note: "Differentiation and integration of polynomials, with stationary points and area." },
+];

@@ -1,0 +1,29 @@
+<%- include("partials/head") %>
+<%- include("partials/nav") %>
+<main id="main">
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="eyebrow"><span>Tuition</span></p>
+      <h1>Live online classes</h1>
+      <p class="lede">Choose one-to-one or group tuition. You will continue on Mathism to sign in and complete your booking.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap board-cards">
+      <article class="board-card">
+        <p class="board-card-kicker">One-to-one</p>
+        <h3>Private tuition</h3>
+        <p>Personalised sessions focused on your syllabus, weaker topics, and exam timing.</p>
+        <a class="btn btn-cta" href="<%= site.mathismLogin %>" target="_blank" rel="noopener noreferrer">Book one-to-one</a>
+      </article>
+      <article class="board-card">
+        <p class="board-card-kicker">Group</p>
+        <h3>Small group classes</h3>
+        <p>Learn with other students on a shared timetable covering papers or a full syllabus.</p>
+        <a class="btn btn-cta" href="<%= site.mathismLogin %>" target="_blank" rel="noopener noreferrer">Join a group</a>
+      </article>
+    </div>
+  </section>
+</main>
+<%- include("partials/footer") %>

@@ -1,0 +1,26 @@
+<%- include("partials/head") %>
+<%- include("partials/nav") %>
+<main id="main">
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="eyebrow"><span>O Level / IGCSE · 4037</span></p>
+      <h1>Additional Mathematics</h1>
+      <p class="lede">This shelf is reserved. The chapter list is the route the notes will follow. Nothing here is a lesson yet.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap topic-index">
+      <% chapters.forEach((chapter, i) => { %>
+        <article class="topic-row is-static">
+          <span class="topic-code"><%= String(i + 1).padStart(2, "0") %></span>
+          <span>
+            <strong><%= chapter.title %></strong>
+            <em><%= chapter.note %></em>
+          </span>
+          <span class="topic-go">Drafting</span>
+        </article>
+      <% }) %>
+    </div>
+  </section>
+</main>
+<%- include("partials/footer") %>

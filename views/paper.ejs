@@ -1,0 +1,30 @@
+<%- include("partials/head") %>
+<%- include("partials/nav") %>
+<main id="main">
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="crumbs">
+        <a href="/notes">Notes</a> <span>/</span>
+        <a href="<%= packHref %>"><%= packLabel %></a> <span>/</span> <%= paper.code %>
+      </p>
+      <p class="eyebrow"><span><%= paper.number %> · <%= paper.code %></span></p>
+      <h1><%= paper.title %></h1>
+      <p class="lede"><%= paper.summary %></p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap topic-index">
+      <% paper.topics.forEach((topic) => { %>
+        <a class="topic-row" href="<%= notesBase %>/<%= paper.slug %>/<%= topic.slug %>">
+          <span class="topic-code"><%= topic.code %></span>
+          <span>
+            <strong><%= topic.title %></strong>
+            <em><%- topic.summary %></em>
+          </span>
+          <span class="topic-go" aria-hidden="true">Read</span>
+        </a>
+      <% }) %>
+    </div>
+  </section>
+</main>
+<%- include("partials/footer") %>

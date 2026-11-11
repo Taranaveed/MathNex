@@ -1,0 +1,32 @@
+<footer class="footer">
+  <div class="wrap footer-grid">
+    <div>
+      <p class="footer-mark"><img class="logo-img" src="/logo.png" alt="" width="28" height="28"> MathNex.</p>
+      <p class="footer-note">CAIE and Edexcel past papers, notes for every paper, AI marking, and live classes through Mathism.</p>
+    </div>
+    <div>
+      <p class="footer-label">Explore</p>
+      <a href="/caie">CAIE</a>
+      <a href="/edexcel">Edexcel</a>
+      <a href="/notes">Topic notes</a>
+      <a href="/marker">AI Marker</a>
+      <a href="/classes">Classes</a>
+    </div>
+    <div>
+      <p class="footer-label">Company</p>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+      <a href="/privacy">Privacy</a>
+      <a href="mailto:<%= site.email %>"><%= site.email %></a>
+    </div>
+  </div>
+  <div class="wrap footer-base">
+    <span>© <%= year %> <%= site.name %></span>
+    <span class="footer-powered">Powered by <a href="<%= site.aiPowerUrl %>" target="_blank" rel="noopener noreferrer">AI</a></span>
+  </div>
+</footer>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="/js/main.js"></script>
+</body>
+</html>

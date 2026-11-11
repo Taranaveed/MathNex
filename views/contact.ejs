@@ -1,0 +1,43 @@
+<%- include("partials/head") %>
+<%- include("partials/nav") %>
+<main id="main">
+  <section class="page-hero">
+    <div class="wrap narrow">
+      <p class="eyebrow"><span>Contact</span></p>
+      <h1>Contact us</h1>
+      <p class="lede">Questions, corrections, or feedback — send a message below, or email <a href="mailto:<%= site.email %>"><%= site.email %></a>.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap narrow">
+      <% if (sent) { %>
+        <div class="banner" role="status">Thank you. Your message has been received.</div>
+      <% } %>
+      <% if (errors.length) { %>
+        <div class="banner banner-bad" role="alert">
+          <% errors.forEach((error) => { %><p><%= error %></p><% }) %>
+        </div>
+      <% } %>
+      <form class="form" method="post" action="/contact">
+<p class="hp" aria-hidden="true">
+            <label for="company">Company</label>
+            <input id="company" name="company" tabindex="-1" autocomplete="off">
+          </p>
+        <label for="name">Name</label>
+        <input id="name" name="name" required maxlength="80" value="<%= values.name %>">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" required maxlength="120" value="<%= values.email %>">
+        <label for="interest">About</label>
+        <select id="interest" name="interest">
+          <% ["General enquiry", "Correction to notes", "Past papers", "Classes", "Something else"].forEach((option) => { %>
+            <option <%= values.interest === option ? "selected" : "" %>><%= option %></option>
+          <% }) %>
+        </select>
+        <label for="message">Message</label>
+        <textarea id="message" name="message" required minlength="10" maxlength="4000" rows="7"><%= values.message %></textarea>
+        <button class="btn btn-ink" type="submit">Send</button>
+      </form>
+    </div>
+  </section>
+</main>
+<%- include("partials/footer") %>

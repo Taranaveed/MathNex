@@ -1,0 +1,59 @@
+<%- include("partials/head") %>
+<%- include("partials/nav") %>
+<main id="main">
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="eyebrow"><span>AI Marker</span></p>
+      <h1>Submit your working</h1>
+      <p class="lede">Upload a photo or PDF, or type your solution. Select a paper if you want marking against an official mark scheme; otherwise we will still review your work.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap marker-layout">
+      <form id="marker-form" class="form marker-form" enctype="multipart/form-data">
+        <p class="quiet">Paper details are optional if your question is not from our library.</p>
+
+        <label for="board">Exam board (optional)</label>
+        <select id="board" name="board"></select>
+
+        <label for="level">Level (optional)</label>
+        <select id="level" name="level"></select>
+
+        <label for="path-rest">Paper (optional)</label>
+        <select id="path-rest" name="pathRest"></select>
+
+        <label for="ms-file">Mark scheme</label>
+        <select id="ms-file" name="msFile">
+          <option value="">Automatic — use the mark scheme if available</option>
+        </select>
+        <p class="quiet" id="ms-status">No paper selected. Your work can still be checked.</p>
+
+        <label for="question">Question reference (optional)</label>
+        <input id="question" name="question" maxlength="120" placeholder="e.g. Question 4, or a short description">
+
+        <label for="working">Typed working</label>
+        <textarea id="working" name="working" rows="8" maxlength="12000" placeholder="Enter your solution, or leave blank if you are uploading a file."></textarea>
+
+        <label for="script">Photo or PDF</label>
+        <input id="script" name="script" type="file" accept="image/png,image/jpeg,image/webp,application/pdf">
+
+        <button class="btn btn-cta" type="submit">Mark this script</button>
+        <p class="quiet">Uploaded scripts are deleted after marking. Requests are rate-limited.</p>
+      </form>
+
+      <div class="marker-result" id="marker-result" aria-live="polite">
+        <div class="board-card" id="marker-empty">
+          <p class="board-card-kicker">Result</p>
+          <h3>Ready when you are</h3>
+          <p>Paste or upload any maths working and we will check it. You only need to pick a board and paper if you want us to mark against the official mark scheme for that paper.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<script>
+  window.MATHNEX_PICKER = <%- JSON.stringify(pickerTree) %>;
+</script>
+<script defer src="/js/marker.js"></script>
+<%- include("partials/footer") %>

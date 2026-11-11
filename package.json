@@ -1,0 +1,19 @@
+{
+  "name": "mathnex",
+  "version": "1.0.0",
+  "description": "MathNex — CAIE/Edexcel papers, 9231 notes, AI marker, Mathism class CTAs",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "multer": "^2.5.0",
+    "openai": "^7.55.0",
+    "pdf-parse": "^2.4.5"
+  }
+}
