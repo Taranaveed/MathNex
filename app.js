@@ -3,17 +3,18 @@ const os = require("os");
 const path = require("path");
 const express = require("express");
 const multer = require("multer");
-const site = require("./data/site");
-const sessions = require("./data/sessions");
-const { papers, getPaper, getTopic, flatten } = require("./data/syllabus");
-const notes = require("./data/notes");
-const { topicFiles, sessionRows, countReady } = require("./lib/library");
-const { boards, findBySlugs, crumbsFor, allHrefs, LIBRARY_ROOT } = require("./lib/catalog");
-const { pickerTree, resolveContext } = require("./lib/markSchemeIndex");
-const { markAttempt } = require("./lib/marker");
+
+const root = __dirname;
+const site = require(path.join(root, "data", "site.js"));
+const sessions = require(path.join(root, "data", "sessions.js"));
+const { papers, getPaper, getTopic, flatten } = require(path.join(root, "data", "syllabus"));
+const notes = require(path.join(root, "data", "notes"));
+const { topicFiles, sessionRows, countReady } = require(path.join(root, "lib", "library.js"));
+const { boards, findBySlugs, crumbsFor, allHrefs, LIBRARY_ROOT } = require(path.join(root, "lib", "catalog.js"));
+const { pickerTree, resolveContext } = require(path.join(root, "lib", "markSchemeIndex.js"));
+const { markAttempt } = require(path.join(root, "lib", "marker.js"));
 
 const app = express();
-const root = __dirname;
 const recentPosts = new Map();
 const markerHits = new Map();
 const upload = multer({
